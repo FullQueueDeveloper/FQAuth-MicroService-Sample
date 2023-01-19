@@ -36,5 +36,9 @@ let package = Package(
     swiftSettings: [
         .unsafeFlags(["-cross-module-optimization"], .when(configuration: .release))
     ]),
+    .testTarget(name: "RandomStringMicroserviceTests", dependencies: [
+      .product(name: "XCTVapor", package: "vapor"),
+      "RandomStringMicroservice"
+    ])
   ]
 )

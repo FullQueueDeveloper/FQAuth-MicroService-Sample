@@ -1,4 +1,5 @@
-.env
+.env*
+!.env.*.sample
 .build
 .DS_Store
 *.xcodeproj

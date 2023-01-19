@@ -6,7 +6,7 @@ extension Application {
 
     try self.configurePostgres()
     self.configureMigrations()
-    self.configureRoutes()
+    try self.configureRoutes()
     self.configureCommands()
   }
 }
