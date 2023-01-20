@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
   name: "RandomStringMicroservice",
   platforms: [
-      .macOS(.v11),
+      .macOS(.v12),
   ],
   products: [
     .executable(name: "RandomStringMicroservice", targets: ["RandomStringMicroservice"]),

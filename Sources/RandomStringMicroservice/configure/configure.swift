@@ -8,5 +8,6 @@ extension Application {
     self.configureMigrations()
     try self.configureRoutes()
     self.configureCommands()
+    self.configureSigning()
   }
 }

@@ -60,7 +60,7 @@
       "location" : "https://github.com/FullQueueDeveloper/FQAuth",
       "state" : {
         "branch" : "initial",
-        "revision" : "2cd83d9c3dd3c525c7044847f314586ae87baabb"
+        "revision" : "d1ba332c7592bf4fb024ca7f4f45209317fd483f"
       }
     },
     {
@@ -149,8 +149,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://gitlab.com/mordil/RediStack.git",
       "state" : {
-        "revision" : "5458d6476e05d5f1b43097f1bc9b599e936b5f2f",
-        "version" : "1.3.0"
+        "revision" : "254e3e78b32b2f332e6c8f010f5b8a92646c4632",
+        "version" : "1.3.2"
       }
     },
     {

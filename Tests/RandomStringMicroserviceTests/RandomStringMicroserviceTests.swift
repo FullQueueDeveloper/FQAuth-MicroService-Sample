@@ -22,12 +22,41 @@ final class RandomStringMicroserviceTests: XCTestCase {
     }
   }
 
-  func testNoUserMeansReturnsNoContentStatusCode() throws {
+  func testNoUserNotExistingReturnsNoContentStatusCode() throws {
+
+    let userID = UUID(uuidString: "2A5AA76F-AB4A-4053-9E7D-63FB03F8535C")!
+    let token = FQAuthSessionToken(userID: userID,
+                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)))
+
+    let jwt = try app.jwt.signers.sign(token)
     
-    let headers = HTTPHeaders([("Auth", "Bearer \(Fixtures.token)")])
+    let headers = HTTPHeaders([("Authorization", "Bearer \(jwt)")])
     try app.test(.GET, "/api/sample",
                  headers: headers) { response in
       XCTAssertEqual(response.status, .noContent)
+    }
+  }
+
+  func testExistingAuthenticatedUserReturnRandomString() throws {
+    let userID = UUID(uuidString: "2A5AA76F-AB4A-4053-9E7D-63FB03F8535C")!
+
+
+    let model = RandomStringModel()
+    model.randomString = "arst"
+    model.userID = userID
+    model.id = UUID()
+    try model.save(on: app.db(.psql)).wait()
+
+
+    let token = FQAuthSessionToken(userID: userID,
+                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)))
+
+    let jwt = try app.jwt.signers.sign(token)
+    let headers = HTTPHeaders([("Authorization", "Bearer \(jwt)")])
+    try app.test(.GET, "/api/sample",
+                 headers: headers) { response in
+      XCTAssertEqual(response.status, .ok)
+      XCTAssertEqual(String(buffer: response.body), "arst")
     }
   }
 }
