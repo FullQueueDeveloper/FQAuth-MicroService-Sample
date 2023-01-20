@@ -3,7 +3,7 @@ import XCTVapor
 import FQAuthMiddleware
 @testable import RandomStringMicroservice
 
-final class RandomStringMicroserviceTests: XCTestCase {
+final class GetRequestTests: XCTestCase {
 
   var app: Application!
   override func setUpWithError() throws {

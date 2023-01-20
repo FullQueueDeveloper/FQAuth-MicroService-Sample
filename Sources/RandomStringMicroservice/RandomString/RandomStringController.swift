@@ -7,7 +7,7 @@ final class RandomStringController: RouteCollection {
     routes.group("api") { api in
       api.group(FQAuthMiddleware()) { guarded in
         guarded.get("sample", use: self.get(request:))
-        guarded.post("sample/regenerate", use: self.new(request:))
+        guarded.post("sample/new", use: self.new(request:))
       }
     }
   }
