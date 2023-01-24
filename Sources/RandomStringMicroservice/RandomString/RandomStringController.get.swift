@@ -8,7 +8,7 @@ extension RandomStringController {
 
   func get(request: Request) async throws -> String {
 
-    let userID = request.fqSessionToken!.userID
+    let userID = request.fqSessionToken!.userID!
 
     let maybe = try await RandomStringModel
       .query(on: request.db(.psql))

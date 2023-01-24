@@ -8,7 +8,7 @@ extension RandomStringController {
    */
 
   func new(request: Request) throws -> EventLoopFuture<Response> {
-    let userID = request.fqSessionToken!.userID
+    let userID = request.fqSessionToken!.userID!
 
     return RandomStringModel
       .query(on: request.db(.psql))

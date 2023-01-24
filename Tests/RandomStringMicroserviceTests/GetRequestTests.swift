@@ -1,6 +1,7 @@
 import XCTest
 import XCTVapor
 import FQAuthMiddleware
+import JWT
 @testable import RandomStringMicroservice
 
 final class GetRequestTests: XCTestCase {
@@ -26,7 +27,9 @@ final class GetRequestTests: XCTestCase {
 
     let userID = UUID(uuidString: "2A5AA76F-AB4A-4053-9E7D-63FB03F8535C")!
     let token = FQAuthSessionToken(userID: userID,
-                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)))
+                                   deviceName: "Xample",
+                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)),
+                                   iss: IssuerClaim("tomato"))
 
     let jwt = try app.jwt.signers.sign(token)
     
@@ -48,7 +51,9 @@ final class GetRequestTests: XCTestCase {
 
 
     let token = FQAuthSessionToken(userID: userID,
-                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)))
+                                   deviceName: "Xample",
+                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)),
+                                   iss: .init(value: "tomato"))
 
     let jwt = try app.jwt.signers.sign(token)
     let headers = HTTPHeaders([("Authorization", "Bearer \(jwt)")])

@@ -26,7 +26,9 @@ final class NewRequestTests: XCTestCase {
     let userID = UUID(uuidString: "2A5AA76F-AB4A-4053-9E7D-63FB03F8535C")!
 
     let token = FQAuthSessionToken(userID: userID,
-                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)))
+                                   deviceName: "Example",
+                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)),
+                                   iss: .init(value: "com.example"))
     let jwt = try app.jwt.signers.sign(token)
     let headers = HTTPHeaders([("Authorization", "Bearer \(jwt)")])
 
@@ -53,7 +55,9 @@ final class NewRequestTests: XCTestCase {
     try existingModel.save(on: app.db(.psql)).wait()
 
     let token = FQAuthSessionToken(userID: userID,
-                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)))
+                                   deviceName: "my device",
+                                   expiration: .init(value: Date(timeIntervalSinceNow: 600)),
+                                   iss: .init(value: "com.example"))
     let jwt = try app.jwt.signers.sign(token)
     let headers = HTTPHeaders([("Authorization", "Bearer \(jwt)")])
 
