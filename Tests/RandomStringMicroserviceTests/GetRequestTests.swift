@@ -40,7 +40,6 @@ final class GetRequestTests: XCTestCase {
   func testExistingAuthenticatedUserReturnRandomString() throws {
     let userID = UUID(uuidString: "2A5AA76F-AB4A-4053-9E7D-63FB03F8535C")!
 
-
     let model = RandomStringModel()
     model.randomString = "arst"
     model.userID = userID
